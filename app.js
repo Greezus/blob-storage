@@ -39,6 +39,7 @@ app.post('/blobs', function(req, res){
         var blobKey = "blobs:" + id;
         console.log("Stored at " + blobKey);
         var newBlob = req.body;
+        newBlob["id"] = id;
         client.set(blobKey, JSON.stringify(newBlob), function(err, reply){
             console.log(reply);
             res.status(201).send(id.toString());
@@ -98,8 +99,8 @@ app.delete('/blobs/:id', function(req, res){
     });
 });
 
-app.listen(8080, function(){
-    console.log("Running on port 8080");
+app.listen(8081, function(){
+    console.log("Running on port 8081");
 });
 
 function printRedis(err, reply){
