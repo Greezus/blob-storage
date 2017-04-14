@@ -68,6 +68,7 @@ app.put('/blobs/:id', function(req, res){
     var id = req.id
     var blobKey = "blobs:" + id;
     var newBlob = req.body;
+    newBlob["id"] = id;
     client.exists(blobKey, function(err, ex_reply){
         console.log(ex_reply);
         if(ex_reply == 1){
